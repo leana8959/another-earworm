@@ -1,0 +1,43 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <Python>
+      <option name="SPACE_AFTER_PY_COLON" value="false" />
+      <option name="SPACE_AROUND_POWER_OPERATOR" value="false" />
+      <option name="DICT_ALIGNMENT" value="2" />
+      <option name="USE_CONTINUATION_INDENT_FOR_ARGUMENTS" value="true" />
+    </Python>
+    <ScalaCodeStyleSettings>
+      <option name="importLayout">
+        <array />
+      </option>
+      <option name="importsWithPrefix">
+        <array />
+      </option>
+      <option name="SCALAFMT_FALLBACK_TO_DEFAULT_SETTINGS" value="true" />
+      <option name="MULTILINE_STRING_CLOSING_QUOTES_ON_NEW_LINE" value="true" />
+    </ScalaCodeStyleSettings>
+    <codeStyleSettings language="JAVA">
+      <option name="SPACE_AROUND_MULTIPLICATIVE_OPERATORS" value="false" />
+      <indentOptions>
+        <option name="USE_TAB_CHARACTER" value="true" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="Python">
+      <option name="WRAP_ON_TYPING" value="0" />
+      <indentOptions>
+        <option name="USE_TAB_CHARACTER" value="true" />
+        <option name="SMART_TABS" value="true" />
+        <option name="KEEP_INDENTS_ON_EMPTY_LINES" value="true" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="Scala">
+      <option name="KEEP_FIRST_COLUMN_COMMENT" value="true" />
+      <indentOptions>
+        <option name="INDENT_SIZE" value="4" />
+        <option name="CONTINUATION_INDENT_SIZE" value="8" />
+        <option name="TAB_SIZE" value="4" />
+        <option name="USE_TAB_CHARACTER" value="true" />
+      </indentOptions>
+    </codeStyleSettings>
+  </code_scheme>
+</component>
