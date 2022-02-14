@@ -1,6 +1,6 @@
-package com.github.leana.anotherEarworm;
+package com.github.leana.bot;
 
-import com.github.leana.anotherEarworm.commands.*;
+import com.github.leana.bot.commands.*;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class CommandManager {
 	public static void handle(MessageCreateEvent event) {
 		String query = event.getMessage().getContent().substring(1);
 		for (ICommand cmd : commands) {
-			if (query.equalsIgnoreCase(cmd.name())) {
+			if (query.startsWith(cmd.name())) {
 				cmd.execute(event);
 			}
 		}

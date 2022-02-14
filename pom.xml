@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.nottyl.earwormsbot</groupId>
-    <artifactId>earworms</artifactId>
+    <groupId>com.github.leana.another-earworm</groupId>
+    <artifactId>another-earworm</artifactId>
     <version>snapshot 220130</version>
 
     <properties>

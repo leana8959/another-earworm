@@ -1,4 +1,4 @@
-package com.github.leana.anotherEarworm;
+package com.github.leana.bot;
 
 import com.sedmelluq.discord.lavaplayer.format.StandardAudioDataFormats;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;

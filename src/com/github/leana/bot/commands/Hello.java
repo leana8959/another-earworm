@@ -1,7 +1,7 @@
-package com.github.leana.anotherEarworm.commands;
+package com.github.leana.bot.commands;
 
 
-import com.github.leana.anotherEarworm.ICommand;
+import com.github.leana.bot.ICommand;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 
 public class Hello implements ICommand {

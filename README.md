@@ -1,8 +1,12 @@
-# earwormsbot
-A self-made Discord music bot with Discord4j.
+# another-earworm
+A discord4j-based bot, based on [tyler's bot](https://github.com/nottyl/earwormsbot)
 
-Call the bot using "!" prefix.
-Current command list:
+## Setup
+Set bot token and prefix in .env file, then you're good to go !
+
+# Current command list:
   - hello
   - join
   - play
+  - leave
+  - 

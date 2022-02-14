@@ -1,4 +1,4 @@
-package com.github.leana.anotherEarworm;
+package com.github.leana.bot;
 
 import io.github.cdimascio.dotenv.Dotenv;
 

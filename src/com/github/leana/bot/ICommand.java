@@ -1,7 +1,6 @@
-package com.github.leana.anotherEarworm;
+package com.github.leana.bot;
 
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.event.domain.message.MessageEvent;
 
 public interface ICommand {
 
