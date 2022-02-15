@@ -9,6 +9,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Queue;
@@ -28,7 +29,7 @@ public class TrackScheduler extends AudioEventAdapter {
 	}
 
 	/**
-	 * @param trackUrl query or URL of a song
+	 * @param trackUrl    query or URL of a song
 	 * @param noInterrupt interrupt the song currently playing
 	 */
 	public void play(String trackUrl, boolean noInterrupt) {
@@ -40,15 +41,17 @@ public class TrackScheduler extends AudioEventAdapter {
 			@Override
 			public void trackLoaded(AudioTrack track) {
 				queue(track, noInterrupt);
-//				TODO: track loaded feedback
+//				TODO: Userfeedback
+//				UserFeedback.trackLoaded(event, track);
 			}
 
 			@Override
 			public void playlistLoaded(AudioPlaylist playlist) {
 				final List<AudioTrack> tracks = playlist.getTracks();
+//				TODO: Userfeedback
+//				UserFeedback.playlistLoaded(event, tracks);
 				queue(tracks.remove(0), noInterrupt);
 				queue.addAll(tracks);
-//				TODO: playlist loaded feedbock
 			}
 
 			@Override
@@ -78,8 +81,15 @@ public class TrackScheduler extends AudioEventAdapter {
 		final AudioTrack next = this.queue.poll();
 		final MusicManager mgr = Main.guildMusicManager.getMusicManager(this.event);
 		final AudioPlayer player = mgr.getPlayer();
-		player.startTrack(next, false);
+
+		Mono.justOrEmpty(next).subscribe((track -> {
+//			TODO: userfeedback
+//					UserFeedback.trackLoaded(event, track);
+					player.startTrack(next, false);
+				})
+		);
 	}
+
 
 	@Override
 	public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {

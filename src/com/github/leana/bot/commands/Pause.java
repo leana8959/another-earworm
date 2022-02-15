@@ -17,10 +17,11 @@ public class Pause implements ICommand {
 	}
 
 	@Override
-	public void execute(MessageCreateEvent event) {
+	public Mono<Void> execute(MessageCreateEvent event) {
 		final MusicManager mgr = Main.guildMusicManager.getMusicManager(event);
 		final AudioPlayerManager playerManager = mgr.getPlayerManager();
-
+//		TODO: pause
+		return Mono.empty();
 
 	}
 }

@@ -4,10 +4,9 @@ import com.github.leana.bot.ICommand;
 import com.github.leana.bot.Main;
 import com.github.leana.bot.MusicManager;
 import com.github.leana.bot.TrackScheduler;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-
-import java.util.Arrays;
-import java.util.List;
+import reactor.core.publisher.Mono;
 
 
 public class Play implements ICommand {
@@ -19,22 +18,27 @@ public class Play implements ICommand {
 	}
 
 	@Override
-	public void execute(MessageCreateEvent event) {
-		final MusicManager mgr = Main.guildMusicManager.getMusicManager(event);
-		final TrackScheduler trackScheduler = mgr.getTrackScheduler();
+	public Mono<Void> execute(MessageCreateEvent event) {
+//		FIXME: there's no sound
+		return event.getMessage().getChannel()
+				.flatMap(replyChannel -> {
+					return replyChannel.createMessage("starting music")
+							.flatMap(message -> {
+								final MusicManager mgr = Main.guildMusicManager.getMusicManager(event);
+								final AudioPlayerManager playerManager = mgr.getPlayerManager();
+								final TrackScheduler trackScheduler = mgr.getTrackScheduler();
+								final String query = event.getMessage().getContent()
+										.replaceFirst("^~play", "")
+										.replace(" ", "");
+//								XXX
+								System.out.println("what's up");
+								System.out.println(query);
+								trackScheduler.play(query, false);
 
-//		TODO: see if user is in a voice channel
-//		TODO: unpause the music
-
-		final String content = event.getMessage().getContent();
-		final List<String> command = Arrays.asList(content.split(" "));
-
-		if (command.size() > 1) {
-			trackScheduler.play(command.get(1), false);
-//			 TODO: no interrupt
-		} else {
-			event.getMessage().getChannel().block().createMessage("nothing to play...").block();
-		}
-
+								return Mono.empty();
+							});
+				})
+				.then();
 	}
 }
+

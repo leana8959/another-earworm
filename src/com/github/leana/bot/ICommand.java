@@ -1,6 +1,7 @@
 package com.github.leana.bot;
 
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import reactor.core.publisher.Mono;
 
 public interface ICommand {
 
@@ -13,5 +14,5 @@ public interface ICommand {
 	 * Execute a command
 	 * @param event The event that triggered a command
 	 */
-	void execute(MessageCreateEvent event);
+	Mono<Void> execute(MessageCreateEvent event);
 }

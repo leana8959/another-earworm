@@ -4,7 +4,6 @@ import com.github.leana.bot.ICommand;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.Member;
-import discord4j.core.object.entity.channel.VoiceChannel;
 import reactor.core.publisher.Mono;
 
 public class Leave implements ICommand {
@@ -14,11 +13,23 @@ public class Leave implements ICommand {
 	}
 
 	@Override
-	public void execute(MessageCreateEvent event) {
-		Mono.justOrEmpty(event.getMember())
+	public Mono<Void> execute(MessageCreateEvent event) {
+
+//				FIXME: give both response if leave command used
+		return Mono.justOrEmpty(event.getMember())
 				.flatMap(Member::getVoiceState)
 				.flatMap(VoiceState::getChannel)
-				.flatMap(VoiceChannel::sendDisconnectVoiceState)
-				.block();
+				.flatMap(voiceChannel -> {
+					return event.getMessage().getChannel()
+							.flatMap(replyChannel -> replyChannel.createMessage("Bye :)"))
+							.flatMap(message -> voiceChannel.sendDisconnectVoiceState());
+				})
+//				.switchIfEmpty(
+//						event.getMessage().getChannel()
+//								.flatMap(replyChannel -> replyChannel.createMessage("Where do you want me to go ??"))
+//								.flatMap(message -> Mono.empty())
+//				)
+				.then();
 	}
+
 }
